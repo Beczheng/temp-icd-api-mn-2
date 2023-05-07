@@ -7,16 +7,16 @@ app = FastAPI()
 df = pd.read_csv('./data/smallutilization2019.csv')
 
 @app.get("/")
-async def home():
+async def root():
     return {"this is an API service for MN code details"}
 
-@app.route('/preview', methods=["GET"])
+@app.get('/preview', methods=["GET"])
 async def preview():
     top10rows = df.head(10)
     result = top10rows.to_json(orient="records")
     return result
 
-@app.route('/icd/<value>', methods=['GET'])
+@app.get('/icd/<value>', methods=['GET'])
 async def icdcode(value):
     print('value: ', value)
     filtered = df[df['principal_diagnosis_code'] == value]
@@ -25,7 +25,7 @@ async def icdcode(value):
     else:
         return filtered.to_json(orient="records")
 
-@app.route('/icd/<value>/sex/<value2>')
+@app.get('/icd/<value>/sex/<value2>')
 async def icdcode2(value, value2):
     print('value: ', value)
     filtered = df[df['principal_diagnosis_code'] == value]
