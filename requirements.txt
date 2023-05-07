@@ -1,2 +1,2 @@
-flask
-pandas
+fastapi==0.95.1
+uvicorn==0.21.1
