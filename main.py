@@ -10,13 +10,13 @@ df = pd.read_csv('./data/smallutilization2019.csv')
 async def root():
     return {"this is an API service for MN code details"}
 
-@app.get('/preview', methods=["GET"])
+@app.get('/preview')
 async def preview():
     top10rows = df.head(10)
     result = top10rows.to_json(orient="records")
     return result
 
-@app.get('/icd/<value>', methods=['GET'])
+@app.get('/icd/<value>')
 async def icdcode(value):
     print('value: ', value)
     filtered = df[df['principal_diagnosis_code'] == value]
@@ -34,6 +34,3 @@ async def icdcode2(value, value2):
         return 'There is nothing here'
     else:
         return filtered.to_json(orient="records")
-
-if __name__ == '__main__':
-    app.run(debug=True)
