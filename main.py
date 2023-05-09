@@ -25,7 +25,7 @@ async def icdcode(value):
     else:
         return filtered.to_json(orient="records")
 
-@app.get('/icd/{value}/sex/{value2}')
+@app.get('/encounter_count/{value}/sex/{value2}')
 async def icdcode2(value, value2):
     print('value: ', value)
     filtered = df[df['encounter_count'] == value]
