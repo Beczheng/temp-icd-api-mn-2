@@ -16,19 +16,19 @@ async def preview():
     result = top10rows.to_json(orient="records")
     return result
 
-@app.get('/encounter_count/{value}')
+@app.get('/age_group/{value}')
 async def icdcode(value):
     print('value: ', value)
-    filtered = df[df['encounter_count'] == value]
+    filtered = df[df['age_group'] == value]
     if len(filtered) <= 0:
         return 'There is nothing here'
     else:
         return filtered.to_json(orient="records")
 
-@app.get('/encounter_count/{value}/sex/{value2}')
+@app.get('/age_group/{value}/sex/{value2}')
 async def icdcode2(value, value2):
     print('value: ', value)
-    filtered = df[df['encounter_count'] == value]
+    filtered = df[df['age_group'] == value]
     filtered2 = filtered[filtered['sex'] == value2]
     if len(filtered2) <= 0:
         return 'There is nothing here'
