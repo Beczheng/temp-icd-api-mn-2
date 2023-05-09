@@ -2,13 +2,13 @@ from fastapi import FastAPI
 import pandas as pd
 import uvicorn
 
-app = FastAPI()
-
 df = pd.read_csv('./data/smallutilization2019.csv')
 
-@app.get("/")
-async def home():
-    return {"this is an API service for MN code details"}
+app = FastAPI()
+
+@app.get('/')
+def home():
+    return {'this is an API service for MN code details'}
 
 @app.get('/preview')
 async def preview():
@@ -33,4 +33,7 @@ async def icdcode2(value, value2):
     if len(filtered2) <= 0:
         return 'There is nothing here'
     else:
-        return filtered.to_json(orient="records")
+        return filtered2.to_json(orient="records")
+
+if __name__ == '__main__':
+    app.run(debug=True)
