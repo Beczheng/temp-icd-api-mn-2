@@ -7,7 +7,7 @@ app = FastAPI()
 df = pd.read_csv('./data/smallutilization2019.csv')
 
 @app.get("/")
-async def root():
+async def home():
     return {"this is an API service for MN code details"}
 
 @app.route('/preview', methods=["GET"])
